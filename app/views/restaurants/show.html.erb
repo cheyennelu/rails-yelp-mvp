@@ -1,10 +1,24 @@
 <div class="container">
-  <h1><%= @restaurant.name %></h1>
-  <p>Address: <%= @restaurant.address %></p>
-  <p>Phone number: <%= @restaurant.phone_number %></p>
-  <%= link_to 'Full list', restaurants_path, class: "btn btn-primary"  %>
-  <%= link_to 'Update this restaurant', edit_restaurant_path, class: "btn btn-secondary" %>
-  <%= link_to 'Delete', restaurant_path(@restaurant), method: :delete, class: "btn btn-warning", data: { confirm: "Delete #{@restaurant.name}?" } %>
+  <div class="display-resto">
+    <h1><%= @restaurant.name %></h1>
+    <p>Address: <%= @restaurant.address %></p>
+    <p>Phone number: <%= @restaurant.phone_number %></p>
+
+  </div>
+  <div class="review-box">
+    <% @reviews.each do |review| %>
+      <p><%= review.content %> </p>
+    <% end %>
+  </div>
+  <div class='links'>
+
+    <%= render 'reviews/reviewform' %>
+    <%= link_to 'Full list', restaurants_path, class: "btn btn-primary"  %>
+    <%= link_to 'Update this restaurant', edit_restaurant_path(@restaurant), class: "btn btn-secondary" %>
+    <%= link_to 'Delete', restaurant_path(@restaurant), method: :delete, class: "btn btn-warning", data: { confirm: "Delete #{@restaurant.name}?" } %>
+
+  </div>
 </div>
+
 
 

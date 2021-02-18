@@ -1,11 +1,13 @@
 class RestaurantsController < ApplicationController
-  before_action :find_resto, only: [:show, :edit, :update, :destroy]
+  before_action :find_restaurant, only: [:show, :edit, :update, :destroy]
 
   def index
     @restaurants = Restaurant.all
   end
 
   def show
+    @reviews = @restaurant.reviews
+    @new_review = Review.new
   end
 
   def new
@@ -40,7 +42,7 @@ class RestaurantsController < ApplicationController
 
   private
 
-  def find_resto
+  def find_restaurant
     @restaurant = Restaurant.find(params[:id])
   end
 
